@@ -1,4 +1,4 @@
-package carmecrazy.model;
+package com.example.carmecrazy;
 
 public class Car {
 
