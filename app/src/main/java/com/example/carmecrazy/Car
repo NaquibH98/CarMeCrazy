@@ -59,4 +59,16 @@ public class Car {
 	public void setCar_Image(String car_Image) {
 		Car_Image = car_Image;
 	}
+
+	@Override
+    	public String toString() {
+        return "Car{" +
+                "CarID=" + CarID +
+                ", Car_Brand='" + Car_Brand + '\'' +
+                ", Car_Name='" + Car_Name + '\'' +
+                ", Car_Price=" + Car_Price +
+                ", Car_PlateNo='" + Car_PlateNo + '\'' +
+                ", Car_Image='" + Car_Image + '\'' +
+                '}';
+    	}
 }
