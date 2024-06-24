@@ -12,8 +12,8 @@ public class ApiUtils {
     }
 
     // return BookService instance
-    public static BookService getBookService() {
-        return RetrofitClient.getClient(BASE_URL).create(BookService.class);
+    public static CarService getBookService() {
+        return RetrofitClient.getClient(BASE_URL).create(CarService.class);
     }
 
 }
