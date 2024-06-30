@@ -54,10 +54,10 @@ public class NewCarActivity extends AppCompatActivity {
         });
 
         // get view objects references
-        TextView txtBrand = findViewById(R.id.txtBrand);
-        TextView txtName = findViewById(R.id.txtName);
-        TextView txtPrice = findViewById(R.id.txtPrice);
-        TextView txtIPlateNo = findViewById(R.id.txtPlateNo);
+        txtBrand = findViewById(R.id.txtBrand);
+        txtName = findViewById(R.id.txtName);
+        txtPrice = findViewById(R.id.txtPrice);
+        txtPlateNo = findViewById(R.id.txtPlateNo);
     }
 
     /**
@@ -77,7 +77,7 @@ public class NewCarActivity extends AppCompatActivity {
 
         // send request to add new car to the REST API
         CarService carService = ApiUtils.getCarService();
-        Call<Car> call = carService.addCar(user.getToken(), name, brand, price, plateno);
+        Call<Car> call = carService.addCar(user.getToken(), brand, name, price, plateno);
 
         // execute
         call.enqueue(new Callback<Car>() {

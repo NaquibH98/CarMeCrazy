@@ -154,8 +154,8 @@ public class UpdateCarActivity extends AppCompatActivity {
 
         // send request to update the car record to the REST API
         CarService carService = ApiUtils.getCarService();
-        Call<Car> call = carService.updateCar(user.getToken(), car.getCarID(), car.getCar_Name(),
-                car.getCar_Brand(), car.getCar_Price(), car.getCar_Price());
+        Call<Car> call = carService.updateCar(user.getToken(), car.getCarID(), car.getCar_Brand(),
+                car.getCar_Name(), car.getCar_Price(), car.getCar_Car_PlateNo());
 
         // execute
         call.enqueue(new Callback<Car>() {

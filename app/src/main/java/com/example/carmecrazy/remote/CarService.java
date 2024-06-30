@@ -35,6 +35,6 @@ public interface CarService {
     @POST("CAR/{CarID}")
     Call<Car> updateCar(@Header ("api-key") String apiKey, @Path("CarID") int CarID,
                        @Field("Car_Brand") String Car_Brand,
-                       @Field("Car_Name") String Car_Name, @Field("Car_Price") String Car_Price,
+                        @Field("Car_Name") String Car_Name, @Field("Car_Price") String Car_Price,
                        @Field("Car_PlateNo") String Car_PlateNo);
 }
