@@ -37,8 +37,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 public class NewCarActivity extends AppCompatActivity {
 
-    private EditText txtName;
     private EditText txtBrand;
+    private EditText txtName;
     private EditText txtPrice;
     private EditText txtPlateNo;
 
@@ -54,8 +54,8 @@ public class NewCarActivity extends AppCompatActivity {
         });
 
         // get view objects references
-        TextView txtName = findViewById(R.id.txtName);
         TextView txtBrand = findViewById(R.id.txtBrand);
+        TextView txtName = findViewById(R.id.txtName);
         TextView txtPrice = findViewById(R.id.txtPrice);
         TextView txtIPlateNo = findViewById(R.id.txtPlateNo);
     }
@@ -66,8 +66,8 @@ public class NewCarActivity extends AppCompatActivity {
      */
     public void addNewCar(View v) {
         // get values in form
-        String name = txtName.getText().toString();
         String brand = txtBrand.getText().toString();
+        String name = txtName.getText().toString();
         String price = txtPrice.getText().toString();
         String plateno = txtPlateNo.getText().toString();
 

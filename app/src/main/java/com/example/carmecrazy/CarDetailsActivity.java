@@ -65,14 +65,14 @@ public class CarDetailsActivity extends AppCompatActivity {
                     Car car = response.body();
 
                     // get references to the view elements
-                    TextView tvName = findViewById(R.id.tvName);
                     TextView tvBrand = findViewById(R.id.tvBrand);
+                    TextView tvName = findViewById(R.id.tvName);
                     TextView tvPrice = findViewById(R.id.tvPrice);
                     TextView tvIPlateNo = findViewById(R.id.tvPlateNo);
 
                     // set values
-                    tvName.setText(car.getCar_Name());
                     tvBrand.setText(car.getCar_Brand());
+                    tvName.setText(car.getCar_Name());
                     tvPrice.setText(car.getCar_Price());
                     tvIPlateNo.setText(car.getCar_Car_PlateNo());
                 }

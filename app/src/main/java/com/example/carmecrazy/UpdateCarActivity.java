@@ -38,8 +38,8 @@ import retrofit2.Response;
 public class UpdateCarActivity extends AppCompatActivity {
 
     // form fields
-    private EditText txtName;
     private EditText txtBrand;
+    private EditText txtName;
     private EditText txtPrice;
     private EditText txtPlateNo;
     private Car car;  // current car to be updated
@@ -58,11 +58,11 @@ public class UpdateCarActivity extends AppCompatActivity {
         // retrieve car id from intent
         // get car id sent by CarListActivity, -1 if not found
         Intent intent = getIntent();
-        int id = intent.getIntExtra("book_id", -1);
+        int CarID = intent.getIntExtra("CarID", -1);
 
         // get references to the form fields in layout
-        txtName = findViewById(R.id.txtName);
         txtBrand = findViewById(R.id.txtDesc);
+        txtName = findViewById(R.id.txtName);
         txtPrice = findViewById(R.id.txtPrice);
         txtPlateNo = findViewById(R.id.txtPlateNo);
 
@@ -75,7 +75,7 @@ public class UpdateCarActivity extends AppCompatActivity {
         CarService carService = ApiUtils.getCarService();
 
         // execute the API query. send the token and car id
-        carService.getCar(user.getToken(), id).enqueue(new Callback<Car>() {
+        carService.getCar(user.getToken(), CarID).enqueue(new Callback<Car>() {
             @Override
             public void onResponse(Call<Car> call, Response<Car> response) {
                 // for debug purpose
@@ -87,8 +87,8 @@ public class UpdateCarActivity extends AppCompatActivity {
                     car = response.body();
 
                     // set values into forms
-                    txtName.setText(car.getCar_Name());
                     txtBrand.setText(car.getCar_Brand());
+                    txtName.setText(car.getCar_Name());
                     txtPrice.setText(car.getCar_Price());
                     txtPlateNo.setText(car.getCar_Car_PlateNo());
 
@@ -132,8 +132,8 @@ public class UpdateCarActivity extends AppCompatActivity {
      */
     public void updateCar(View view) {
         // get values in form
-        String name = txtName.getText().toString();
         String brand = txtBrand.getText().toString();
+        String name = txtName.getText().toString();
         String price = txtPrice.getText().toString();
         String plateno = txtPlateNo.getText().toString();
 
@@ -141,8 +141,8 @@ public class UpdateCarActivity extends AppCompatActivity {
 
         // update the car object retrieved in when populating the form with the new data.
         // update all fields excluding the id
-        car.setCar_Name(name);
         car.setCar_Brand(brand);
+        car.setCar_Name(name);
         car.setCar_Price(price);
         car.setCar_PlateNo(plateno);
 
@@ -172,7 +172,6 @@ public class UpdateCarActivity extends AppCompatActivity {
 
                     // display message
                     displayUpdateSuccess(updatedCar.getCar_Name() + " updated successfully.");
-
 
                 }
                 else if (response.code() == 401) {

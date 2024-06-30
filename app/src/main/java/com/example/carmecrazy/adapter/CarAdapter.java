@@ -17,14 +17,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
      * Create ViewHolder class to bind list item view
      */
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
-        public TextView tvName;
+
         public TextView tvBrand;
+        public TextView tvName;
         public TextView tvPrice;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.tvName);
             tvBrand = itemView.findViewById(R.id.tvBrand);
+            tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
 
             itemView.setOnLongClickListener(this);  //register long click action to this viewholder instance
@@ -68,9 +69,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // bind data to the view holder instance
         Car m = carListData.get(position);
-        holder.tvName.setText(m.getCar_Name());
         holder.tvBrand.setText(m.getCar_Brand());
-        holder.tvPrice.setText(m.getCar_Price());
+        holder.tvName.setText(m.getCar_Name());
+        holder.tvPrice.setText("Price: RM" + m.getCar_Price());
     }
 
     @Override

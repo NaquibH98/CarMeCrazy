@@ -7,26 +7,25 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="Name"
+        android:text="Brand"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvBrand"
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvName"
-        android:text="Brand"
+        android:layout_below="@+id/tvBrand"
+        android:text="Name"
         android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBrand"
+        android:layout_below="@+id/tvName"
         android:text="Price" />
 </RelativeLayout>
