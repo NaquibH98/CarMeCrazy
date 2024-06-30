@@ -1,5 +1,8 @@
 package com.example.carmecrazy.remote;
 
+import com.example.carmecrazy.model.Car;
+import com.example.carmecrazy.model.DeleteResponse;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,19 +18,16 @@ import retrofit2.http.Query;
 public interface CarService {
 
     @GET("CAR")
-    Call<List<CAR>> getAllBooks(@Header("api-key") String api_key);
+    Call<List<Car>> getAllCars(@Header("api-key") String api_key);
 
-    @GET("CAR/{id}")
-    Call<CAR> getBook(@Header("api-key") String api_key, @Path("id") int id);
+    @GET("CAR/{CarId}")
+    Call<Car> getCar(@Header("api-key") String api_key, @Path("CarId") int CarId);
     @FormUrlEncoded
     @POST("CAR")
-    Call<CAR> addBook(@Header ("api-key") String apiKey, @Field("isbn") String isbn,
-                       @Field("name") String name, @Field("year") String year,
-                       @Field("author") String author, @Field("description") String description,
-                       @Field("image") String image, @Field("createdAt") String createdAt,
-                       @Field("updatedAt") String updatedAt);
+    Call<Car> addCar(@Header ("api-key") String apiKey, @Field("Car_Brand") String Car_Brand,
+                       @Field("Car_Name") String Car_Name, @Field("Car_Price") Double Car_Price,
+                       @Field("Car_PlateNo") String Car_PlateNo, @Field("Car_Image") String Car_Image);
 
-
-    @DELETE("CAR/{id}")
-    Call<DeleteResponse> deleteBook(@Header ("api-key") String apiKey, @Path("id") int id);
+    @DELETE("CAR/{CarId}")
+    Call<DeleteResponse> deleteCar(@Header ("api-key") String apiKey, @Path("CarId") int CarId);
 }
