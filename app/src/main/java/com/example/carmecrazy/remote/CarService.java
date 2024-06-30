@@ -20,14 +20,14 @@ public interface CarService {
     @GET("CAR")
     Call<List<Car>> getAllCars(@Header("api-key") String api_key);
 
-    @GET("CAR/{CarId}")
-    Call<Car> getCar(@Header("api-key") String api_key, @Path("CarId") int CarId);
+    @GET("CAR/{CarID}")
+    Call<Car> getCar(@Header("api-key") String api_key, @Path("CarId") int CarID);
     @FormUrlEncoded
     @POST("CAR")
     Call<Car> addCar(@Header ("api-key") String apiKey, @Field("Car_Brand") String Car_Brand,
-                       @Field("Car_Name") String Car_Name, @Field("Car_Price") Double Car_Price,
+                       @Field("Car_Name") String Car_Name, @Field("Car_Price") String Car_Price,
                        @Field("Car_PlateNo") String Car_PlateNo, @Field("Car_Image") String Car_Image);
 
-    @DELETE("CAR/{CarId}")
-    Call<DeleteResponse> deleteCar(@Header ("api-key") String apiKey, @Path("CarId") int CarId);
+    @DELETE("CAR/{CarID}")
+    Call<DeleteResponse> deleteCar(@Header ("api-key") String apiKey, @Path("CarID") int CarID);
 }

@@ -33,7 +33,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-public class CarListActivity {
+public class CarListActivity extends AppCompatActivity {
     private CarService carService;
     private RecyclerView rvCarList;
     private CarAdapter adapter;
