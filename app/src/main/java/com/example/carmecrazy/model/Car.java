@@ -5,7 +5,7 @@ public class Car {
 	private int CarID;
 	private String Car_Brand;
 	private String Car_Name;
-	private double Car_Price;
+	private String Car_Price;
 	private String Car_PlateNo;
 	private String Car_Image;
 
@@ -35,11 +35,11 @@ public class Car {
 		Car_Name = car_Name;
 	}
 
-	public double getCar_Price() {
+	public String getCar_Price() {
 		return Car_Price;
 	}
 
-	public void setCar_Price(double car_Price) {
+	public void setCar_Price(String car_Price) {
 		Car_Price = car_Price;
 	}
 
