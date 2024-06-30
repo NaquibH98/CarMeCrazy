@@ -62,12 +62,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
-        // implement this
-
     }
 
-    public void bookListClicked(View view) {
-        // forward user to BookListActivity
+    public void carListClicked(View view) {
+        // forward user to carListActivity
         Intent intent = new Intent(getApplicationContext(), CarListActivity.class);
         startActivity(intent);
     }

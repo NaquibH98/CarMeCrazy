@@ -55,7 +55,7 @@ public class CarListActivity extends AppCompatActivity {
         //register for context menu
         registerForContextMenu(rvCarList);
 
-        // fetch and update book list
+        // fetch and update car list
         updateRecyclerView();
     }
 
@@ -77,10 +77,10 @@ public class CarListActivity extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     // Get list of car object from response
-                    List<Car> books = response.body();
+                    List<Car> cars = response.body();
 
                     // initialize adapter
-                    adapter = new CarAdapter(getApplicationContext(), books);
+                    adapter = new CarAdapter(getApplicationContext(), cars);
 
                     // set adapter to the RecyclerView
                     rvCarList.setAdapter(adapter);
