@@ -1,4 +1,4 @@
-package com.example.carmecrazy;
+package com.example.carmecrazy.model;
 
 public class Car {
 
@@ -8,7 +8,7 @@ public class Car {
 	private double Car_Price;
 	private String Car_PlateNo;
 	private String Car_Image;
-	
+
 	public Car() {}
 
 	public int getCarID() {
