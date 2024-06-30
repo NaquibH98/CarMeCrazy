@@ -16,13 +16,6 @@
         android:text="Name"
         android:textSize="32dip" />
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_columnSpan="2"
-        android:layout_gravity="center"
-        android:text="Price"
-        android:textSize="16dip" />
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -45,6 +38,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
                 android:text="brand" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Price (RM):" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="price" />
         </LinearLayout>
 
         <LinearLayout

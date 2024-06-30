@@ -77,8 +77,7 @@ public class NewCarActivity extends AppCompatActivity {
 
         // send request to add new car to the REST API
         CarService carService = ApiUtils.getCarService();
-        Call<Car> call = carService.addCar(user.getToken(), name, brand, price, plateno,
-                "default.jpg");
+        Call<Car> call = carService.addCar(user.getToken(), name, brand, price, plateno);
 
         // execute
         call.enqueue(new Callback<Car>() {

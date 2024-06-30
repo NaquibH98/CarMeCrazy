@@ -7,7 +7,6 @@ public class Car {
 	private String Car_Name;
 	private String Car_Price;
 	private String Car_PlateNo;
-	private String Car_Image;
 
 	public Car() {}
 
@@ -51,15 +50,6 @@ public class Car {
 		Car_PlateNo = car_PlateNo;
 	}
 
-
-	public String getCar_Image() {
-		return Car_Image;
-	}
-
-	public void setCar_Image(String car_Image) {
-		Car_Image = car_Image;
-	}
-
 	@Override
     	public String toString() {
         return "Car{" +
@@ -68,7 +58,6 @@ public class Car {
                 ", Car_Name='" + Car_Name + '\'' +
                 ", Car_Price=" + Car_Price +
                 ", Car_PlateNo='" + Car_PlateNo + '\'' +
-                ", Car_Image='" + Car_Image + '\'' +
                 '}';
     	}
 }
