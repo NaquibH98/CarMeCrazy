@@ -216,7 +216,7 @@ public class CarListActivity extends AppCompatActivity {
     }
 
     private void doUpdateCar(Car selectedCar) {
-        Log.d("MyApp:", "updating book: " + selectedCar.toString());
+        Log.d("MyApp:", "updating car: " + selectedCar.toString());
         // forward user to UpdateCarActivity, passing the selected car id
         Intent intent = new Intent(getApplicationContext(), UpdateCarActivity.class);
         intent.putExtra("CarID", selectedCar.getCarID());

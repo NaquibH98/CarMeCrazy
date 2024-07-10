@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else if ("user".equals(user.getRole())) {
                             finish();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), CustomerActivity.class));
                         } else {
                             displayToast("Invalid role");
                         }
