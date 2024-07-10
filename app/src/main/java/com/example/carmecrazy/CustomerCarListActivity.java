@@ -112,49 +112,6 @@ public class CustomerCarListActivity extends AppCompatActivity {
     }
 
     /**
-     * Delete car record. Called by contextual menu "Delete"
-     * @param selectedCar - car selected by user
-
-    private void doDeleteCar(Car selectedCar) {
-        // get user info from SharedPreferences
-        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
-        User user = spm.getUser();
-
-        // prepare REST API call
-        CarService carService = ApiUtils.getCarService();
-        Call<DeleteResponse> call = carService.deleteCar(user.getToken(), selectedCar.getCarID());
-
-        // execute the call
-        call.enqueue(new Callback<DeleteResponse>() {
-            @Override
-            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
-                if (response.code() == 200) {
-                    // 200 means OK
-                    displayAlert("Car successfully deleted");
-                    // update data in list view
-                    updateRecyclerView();
-                }
-                else if (response.code() == 401) {
-                    // invalid token, ask user to relogin
-                    Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
-                    clearSessionAndRedirect();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
-                    // server return other error
-                    Log.e("MyApp: ", response.toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DeleteResponse> call, Throwable t) {
-                displayAlert("Error [" + t.getMessage() + "]");
-                Log.e("MyApp:", t.getMessage());
-            }
-        });
-    } */
-
-    /**
      * Displaying an alert dialog with a single button
      * @param message - message to be displayed
      */
@@ -189,7 +146,7 @@ public class CustomerCarListActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.car_context_menu, menu);
+        inflater.inflate(R.menu.cust_car_context_menu, menu);
     }
 
     @Override
@@ -201,27 +158,10 @@ public class CustomerCarListActivity extends AppCompatActivity {
             // user clicked details contextual menu
             doViewDetails(selectedCar);
         }
-        else if (item.getItemId() == R.id.menu_delete) {
-            // user clicked the delete contextual menu
-            //doDeleteCar(selectedCar);
-        }
-        else if (item.getItemId() == R.id.menu_update) {
-            // user clicked the update contextual menu
-            //doUpdateCar(selectedCar);
-        }
 
         return super.onContextItemSelected(item);
     }
 
-    /**
-    private void doUpdateCar(Car selectedCar) {
-        Log.d("MyApp:", "updating car: " + selectedCar.toString());
-        // forward user to UpdateCarActivity, passing the selected car id
-        Intent intent = new Intent(getApplicationContext(), UpdateCarActivity.class);
-        intent.putExtra("CarID", selectedCar.getCarID());
-        startActivity(intent);
-    }
-    */
     private void doViewDetails(Car selectedCar) {
         Log.d("MyApp:", "viewing details: " + selectedCar.toString());
         // forward user to CarDetailsActivity, passing the selected car id
@@ -230,14 +170,4 @@ public class CustomerCarListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Action handler for Add Car floating action button
-     * @param view
-
-    public void floatingAddCarClicked(View view) {
-        // forward user to NewCarActivity
-        Intent intent = new Intent(getApplicationContext(), NewCarActivity.class);
-        startActivity(intent);
-    }
-    */
 }

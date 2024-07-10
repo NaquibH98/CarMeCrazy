@@ -49,7 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Price (RM):" />
+                android:text="Price/day (RM):" />
 
             <TextView
                 android:id="@+id/tvPrice"
