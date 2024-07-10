@@ -5,7 +5,7 @@ public class Booking {
     String Pickup_Date;
     String Return_Date;
     String State;
-    Double Price;
+    Double Total_Price;
     int id; // user id
     int CarID;
 
@@ -41,12 +41,12 @@ public class Booking {
         State = state;
     }
 
-    public Double getPrice() {
-        return Price;
+    public Double getTotal_Price() {
+        return Total_Price;
     }
 
-    public void setPrice(Double price) {
-        Price = price;
+    public void setTotal_Price(Double total_Price) {
+        Total_Price = total_Price;
     }
 
     public int getId() {
@@ -72,7 +72,7 @@ public class Booking {
                 ", Pickup_Date='" + Pickup_Date + '\'' +
                 ", Return_Date='" + Return_Date + '\'' +
                 ", State='" + State + '\'' +
-                ", Price=" + Price +
+                ", TotalPrice=" + Total_Price +
                 ", id=" + id +
                 ", CarID=" + CarID +
                 '}';

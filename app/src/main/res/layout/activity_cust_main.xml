@@ -22,17 +22,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/btnRent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:onClick="rentClicked"
         android:text="RENT NOW"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHello"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.033" />
 
     <Button
         android:id="@+id/btnCarList"
@@ -45,8 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRent"
-        app:layout_constraintVertical_bias="0.106" />
-
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/btnBookingList"
@@ -59,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCarList"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <Button
         android:id="@+id/btnLogout"

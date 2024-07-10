@@ -1,4 +1,5 @@
 package com.example.carmecrazy;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,14 +21,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carmecrazy.adapter.BookingAdapter;
-import com.example.carmecrazy.adapter.CarAdapter;
 import com.example.carmecrazy.model.Booking;
 import com.example.carmecrazy.model.Car;
 import com.example.carmecrazy.model.DeleteResponse;
 import com.example.carmecrazy.model.User;
 import com.example.carmecrazy.remote.ApiUtils;
 import com.example.carmecrazy.remote.BookingService;
-import com.example.carmecrazy.remote.CarService;
 import com.example.carmecrazy.sharedpref.SharedPrefManager;
 
 import java.util.List;
@@ -35,7 +34,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-public class BookingListActivity extends AppCompatActivity {
+
+public class BookingListAdminActivity extends AppCompatActivity {
     private BookingService bookingService;
     private RecyclerView rvBookingList;
     private BookingAdapter adapter;
@@ -210,6 +210,10 @@ public class BookingListActivity extends AppCompatActivity {
             if (selectedBooking.getState().equals("New"))
                 doDeleteBooking(selectedBooking);
         }
+        else if (item.getItemId() == R.id.menu_update) {
+            // user clicked the update contextual menu
+            doUpdateBooking(selectedBooking);
+        }
 
         return super.onContextItemSelected(item);
     }
@@ -222,4 +226,11 @@ public class BookingListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void doUpdateBooking(Booking selectedBooking) {
+        Log.d("MyApp:", "updating booking: " + selectedBooking.toString());
+        // forward user to UpdateBookingActivity, passing the selected booking id
+        Intent intent = new Intent(getApplicationContext(), UpdateBookingActivity.class);
+        intent.putExtra("BookingID", selectedBooking.getBookingID());
+        startActivity(intent);
+    }
 }

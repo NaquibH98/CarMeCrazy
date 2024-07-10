@@ -63,14 +63,14 @@ public class CustomerActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
+/**
     public void rentClicked(View view) {
 
 
         Intent intent = new Intent(this, BookingCarActivity.class);
         startActivity(intent);
 
-    }
+    } */
 
     public void carListClicked(View view) {
         // forward user to CustomerCarListActivity
