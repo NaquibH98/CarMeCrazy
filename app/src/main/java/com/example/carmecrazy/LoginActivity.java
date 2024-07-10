@@ -109,9 +109,16 @@ public class LoginActivity extends AppCompatActivity {
                         // store value in Shared Preferences
                         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
                         spm.storeUser(user);
-                        // forward user to MainActivity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                        if ("admin".equals(user.getRole())) {
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else if ("user".equals(user.getRole())) {
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            displayToast("Invalid role");
+                        }
                     }
                     else {
                         // server return success but no user info replied
