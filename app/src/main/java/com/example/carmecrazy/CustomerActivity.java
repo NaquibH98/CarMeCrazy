@@ -24,7 +24,7 @@ public class CustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cust_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cust_main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -73,8 +73,8 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
     public void carListClicked(View view) {
-        // forward user to carListActivity
-        Intent intent = new Intent(getApplicationContext(), CarListActivity.class);
+        // forward user to CustomerCarListActivity
+        Intent intent = new Intent(getApplicationContext(), CustomerCarListActivity.class);
         startActivity(intent);
     }
 }
