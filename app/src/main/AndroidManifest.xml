@@ -34,10 +34,16 @@
             android:name=".CustomerCarListActivity"
             android:exported="false"/>
         <activity
+            android:name=".BookingListActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"/>
         <activity
             android:name=".CustomerActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".BookingCarActivity"
             android:exported="true">
 
             <intent-filter>

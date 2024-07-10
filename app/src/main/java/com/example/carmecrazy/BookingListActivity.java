@@ -31,16 +31,16 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-public class CustomerCarListActivity extends AppCompatActivity {
+public class BookingListActivity extends AppCompatActivity {
     private CarService carService;
-    private RecyclerView rvCarList;
+    private RecyclerView rvBookingList;
     private CarAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cust_car_list);
+        setContentView(R.layout.activity_booking_list);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -48,10 +48,10 @@ public class CustomerCarListActivity extends AppCompatActivity {
         });
 
         // get reference to the RecyclerView bookingList
-        rvCarList = findViewById(R.id.rvCarList);
+        rvBookingList = findViewById(R.id.rvBookingList);
 
         //register for context menu
-        registerForContextMenu(rvCarList);
+        registerForContextMenu(rvBookingList);
 
         // fetch and update booking list
         updateRecyclerView();
@@ -81,15 +81,15 @@ public class CustomerCarListActivity extends AppCompatActivity {
                     adapter = new CarAdapter(getApplicationContext(), cars);
 
                     // set adapter to the RecyclerView
-                    rvCarList.setAdapter(adapter);
+                    rvBookingList.setAdapter(adapter);
 
                     // set layout to recycler view
-                    rvCarList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    rvBookingList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
                     // add separator between item in the list
-                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvCarList.getContext(),
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvBookingList.getContext(),
                             DividerItemDecoration.VERTICAL);
-                    rvCarList.addItemDecoration(dividerItemDecoration);
+                    rvBookingList.addItemDecoration(dividerItemDecoration);
                 }
                 else if (response.code() == 401) {
                     // invalid token, ask user to relogin

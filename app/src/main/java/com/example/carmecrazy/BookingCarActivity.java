@@ -1,5 +1,5 @@
 package com.example.carmecrazy;
 
-public class RentCarActivity {
+public class BookingCarActivity {
 
 }
