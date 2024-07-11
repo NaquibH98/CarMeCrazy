@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    tools:context=".CustomerCarListActivity">
+    tools:context=".CustomerCarListActivity"
+    android:padding="16dp"
+    android:background="@color/background_color">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCarList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/recycler_view_background"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

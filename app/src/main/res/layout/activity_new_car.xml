@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:useDefaultMargins="true"
     android:alignmentMode="alignBounds"
-    android:id="@+id/main"
     android:columnOrderPreserved="false"
     android:columnCount="2"
-    android:layout_marginTop="40dp"
-    >
+    android:layout_marginTop="40dp">
 
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
         android:text="Add New Car"
-        android:textSize="32dip" />
+        android:textSize="32sp" />
 
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center"
         android:text="Enter car information"
-        android:textSize="16dip" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
+        <!-- Brand -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Brand:" />
+                android:text="Brand:"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/txtBrand"
@@ -46,6 +47,7 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- Name -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -55,7 +57,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Name:" />
+                android:text="Name:"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/txtName"
@@ -64,6 +67,7 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- Price (RM) -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -73,7 +77,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Price (RM):" />
+                android:text="Price (RM):"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/txtPrice"
@@ -82,6 +87,7 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- PlateNo -->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -91,7 +97,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="PlateNo:" />
+                android:text="PlateNo:"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/txtPlateNo"
@@ -100,17 +107,13 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
-        <LinearLayout
+        <!-- ADD CAR Button -->
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ADD CAR"
-                android:onClick="addNewCar" />
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="ADD CAR"
+            android:textSize="16sp"
+            android:onClick="addNewCar" />
 
     </LinearLayout>
 
