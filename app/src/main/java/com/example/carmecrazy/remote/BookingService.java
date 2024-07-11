@@ -4,6 +4,7 @@ import com.example.carmecrazy.model.Booking;
 import com.example.carmecrazy.model.Car;
 import com.example.carmecrazy.model.DeleteResponse;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,8 +26,8 @@ public interface BookingService {
 
     @FormUrlEncoded
     @POST("BOOKING")
-    Call<Booking> addBooking(@Header ("api-key") String apiKey,  @Field("pickup_date") String pickup_date, @Field("return_date") String return_date,
-                             @Field("state") String state,
+    Call<Booking> addBooking(@Header ("api-key") String apiKey,  @Field("pickup_date") String pickup_date,
+                             @Field("return_date") String return_date, @Field("state") String state,
                              @Field("total_price") double total_price, @Field("car_id") int car_id, @Field("user_id") int user_id);
 
     @DELETE("BOOKING/{booking_id}")

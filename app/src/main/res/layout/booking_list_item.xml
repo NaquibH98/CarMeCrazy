@@ -7,10 +7,10 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/tvBookingID"
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BookingID"
+        android:text="Car Name"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -18,7 +18,7 @@
         android:id="@+id/tvState"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBookingID"
+        android:layout_below="@+id/tvName"
         android:text="State"
         android:textStyle="italic" />
 

@@ -41,8 +41,8 @@ public class NewBookingActivity extends AppCompatActivity {
     private static Date pickup_date;
     private static TextView tvReturnDate;
     private static Date return_date;
-    private BookingService bookingService;
     private Booking booking;
+    private BookingService bookingService;
     private Car car;
     private CarService carService;
 
@@ -119,9 +119,9 @@ public class NewBookingActivity extends AppCompatActivity {
             return insets;
         });
 
-        // retrieve booking details based on selected id
+        // retrieve car details based on selected id
 
-        // get booking id sent by BookingListActivity, -1 if not found
+        // get car id sent by CarListActivity, -1 if not found
         Intent intent = getIntent();
         int carId = intent.getIntExtra("CarID", -1);
 
@@ -132,10 +132,10 @@ public class NewBookingActivity extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        // get booking service instance
+        // get car service instance
         carService = ApiUtils.getCarService();
 
-        // execute the API query. send the token and book id
+        // execute the API query. send the token and car id
         carService.getCar(token, carId).enqueue(new Callback<Car>() {
 
             @Override
@@ -153,7 +153,9 @@ public class NewBookingActivity extends AppCompatActivity {
                     TextView tvBrand = findViewById(R.id.tvBrand);
                     TextView tvName = findViewById(R.id.tvName);
                     TextView tvPrice = findViewById(R.id.tvPrice);
-                    TextView tvIPlateNo = findViewById(R.id.tvPlateNo);
+                    TextView tvPlateNo = findViewById(R.id.tvPlateNo);
+                    //TextView tvState = findViewById(R.id.tvState);
+                    //TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
                     tvPickupDate = findViewById(R.id.tvPickupDate);
                     tvReturnDate = findViewById(R.id.tvReturnDate);
 
@@ -161,7 +163,10 @@ public class NewBookingActivity extends AppCompatActivity {
                     tvBrand.setText(car.getCar_Brand());
                     tvName.setText(car.getCar_Name());
                     tvPrice.setText(car.getCar_Price());
-                    tvIPlateNo.setText(car.getCar_PlateNo());
+                    tvPlateNo.setText(car.getCar_PlateNo());
+                    //tvState.setText(booking.getState());
+                    //tvTotal_Price.setText(Double.toString(booking.getTotal_price()));
+
                     // set default pickup date value to current date
                     pickup_date = new Date();
                     Calendar c = Calendar.getInstance();
@@ -230,17 +235,17 @@ public class NewBookingActivity extends AppCompatActivity {
         int carId = car.getCarID();
         int userId = user.getId();
         String state =  booking.getState();
-        Double total_price = booking.getTotal_price();
+        double total_price = booking.getTotal_price();
 
         // convert createdAt date to format in DB
         // reference: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        String pDate = sdf.format(pickup_date);
-        String rDate = sdf.format(return_date);
+        String pDate = booking.getPickup_date();
+        String rDate = booking.getReturn_date();
 
         // send request to add new booking to the REST API
         BookingService bookingService = ApiUtils.getBookingService();
-        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate,state,total_price, userId, carId);
+        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate, state, total_price, userId, carId);
 
         // execute
         call.enqueue(new Callback<Booking>() {
