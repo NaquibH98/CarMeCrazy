@@ -18,15 +18,15 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
      */
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
 
-        public TextView tvBookingID;
+        public TextView tvName;
         public TextView tvState;
-        public TextView tvTotalPrice;
+        public TextView tvTotal_Price;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvBookingID = itemView.findViewById(R.id.tvBookingID);
+            tvName = itemView.findViewById(R.id.tvName);
             tvState = itemView.findViewById(R.id.tvState);
-            tvTotalPrice = itemView.findViewById(R.id.tvTotalPrice);
+            tvTotal_Price = itemView.findViewById(R.id.tvTotalPrice);
 
             itemView.setOnLongClickListener(this);  //register long click action to this viewholder instance
         }
@@ -69,9 +69,9 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     public void onBindViewHolder(BookingAdapter.ViewHolder holder, int position) {
         // bind data to the view holder instance
         Booking m = bookingListData.get(position);
-        holder.tvBookingID.setText(String.valueOf(m.getBooking_id()));
+        holder.tvName.setText(m.getCar().getCar_Name());
         holder.tvState.setText(m.getState());
-        holder.tvTotalPrice.setText("Price: RM" + m.getTotal_price());
+        holder.tvTotal_Price.setText("Price: RM" + m.getTotal_price());
     }
 
     @Override

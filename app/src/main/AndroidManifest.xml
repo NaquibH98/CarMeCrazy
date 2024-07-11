@@ -49,10 +49,10 @@
             android:name=".UpdateBookingActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerActivity"
+            android:name=".MainActivity"
             android:exported="true"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".CustomerActivity"
             android:exported="true">
 
             <intent-filter>

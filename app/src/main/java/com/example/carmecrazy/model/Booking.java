@@ -1,5 +1,11 @@
 package com.example.carmecrazy.model;
 
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Booking {
     int booking_id;
     String pickup_date;
@@ -10,6 +16,7 @@ public class Booking {
     int car_id;
     User user;
     Car car;
+    //String daysdiff;
 
     public int getBooking_id() {
         return booking_id;
@@ -44,6 +51,7 @@ public class Booking {
     }
 
     public double getTotal_price() {
+        //total_price = Double.parseDouble(car.getCar_Price()) * Double.parseDouble(daysdiff);
         return total_price;
     }
 
@@ -112,4 +120,33 @@ public class Booking {
 
     public Booking() {
     }
+
+    /**
+    public void getDifferenceDays(String pickup_date, String return_date) {
+         try {
+            //Dates to compare
+            String CurrentDate =  pickup_date;
+            String FinalDate =  return_date;
+            Date date1;
+            Date date2;
+            SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+
+            //Setting dates
+            date1 = dates.parse(CurrentDate);
+            date2 = dates.parse(FinalDate);
+
+            //Comparing dates
+            long difference = Math.abs(date1.getTime() - date2.getTime());
+            long differenceDates = difference / (24 * 60 * 60 * 1000);
+
+            //Convert long to String
+            daysdiff = Long.toString(differenceDates);
+
+            Log.e("HERE","HERE: " + daysdiff);
+        }
+        catch (Exception exception) {
+            Log.e("DIDN'T WORK", "exception " + exception);
+        }
+    } */
+
 }

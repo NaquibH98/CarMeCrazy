@@ -18,6 +18,8 @@ import com.example.carmecrazy.remote.ApiUtils;
 import com.example.carmecrazy.remote.BookingService;
 import com.example.carmecrazy.sharedpref.SharedPrefManager;
 
+import org.w3c.dom.Text;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,12 +67,16 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     Booking booking = response.body();
 
                     // get references to the view elements
+                    TextView tvBrand = findViewById(R.id.tvBrand);
+                    TextView tvName = findViewById(R.id.tvName);
                     TextView tvPickup_Date = findViewById(R.id.tvPickup_Date);
                     TextView tvReturn_Date = findViewById(R.id.tvReturn_Date);
                     TextView tvState = findViewById(R.id.tvState);
                     TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
 
                     // set values
+                    tvBrand.setText(booking.getCar().getCar_Brand());
+                    tvName.setText(booking.getCar().getCar_Name());
                     tvPickup_Date.setText(booking.getPickup_date());
                     tvReturn_Date.setText(booking.getReturn_date());
                     tvState.setText(booking.getState());
