@@ -229,6 +229,8 @@ public class NewBookingActivity extends AppCompatActivity {
 
         int carId = car.getCarID();
         int userId = user.getId();
+        String state =  booking.getState();
+        Double total_price = booking.getTotal_price();
 
         // convert createdAt date to format in DB
         // reference: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
@@ -238,7 +240,7 @@ public class NewBookingActivity extends AppCompatActivity {
 
         // send request to add new booking to the REST API
         BookingService bookingService = ApiUtils.getBookingService();
-        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate, carId, userId);
+        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate,state,total_price, userId, carId);
 
         // execute
         call.enqueue(new Callback<Booking>() {
@@ -275,10 +277,9 @@ public class NewBookingActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Booking> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Error [" + t.getMessage() + "]",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error connecting", Toast.LENGTH_LONG).show();
                 // for debug purpose
-                Log.d("MyApp:", "Error: " + t.getCause().getMessage());
+
             }
         });
     }
