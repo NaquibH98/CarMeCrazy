@@ -7,8 +7,16 @@ public class Car {
 	private String Car_Name;
 	private String Car_Price;
 	private String Car_PlateNo;
+	private Booking booking;
 
-	public Car() {}
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+    public Car() {}
 
 	public int getCarID() {
 		return CarID;

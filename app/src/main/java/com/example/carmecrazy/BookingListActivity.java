@@ -207,7 +207,7 @@ public class BookingListActivity extends AppCompatActivity {
         }
         else if (item.getItemId() == R.id.menu_delete) {
             // user clicked the delete contextual menu
-            if (selectedBooking.getState().equals("New"))
+            if (selectedBooking.getState().equalsIgnoreCase("New"))
                 doDeleteBooking(selectedBooking);
         }
 

@@ -7,16 +7,16 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Booking {
-    int booking_id;
-    String pickup_date;
-    String return_date;
-    String state;
-    double total_price;
-    int user_id; // user id
-    int car_id;
-    User user;
-    Car car;
-    //String daysdiff;
+    private int booking_id;
+    private String pickup_date;
+    private String return_date;
+    private String state;
+    private double total_price;
+    private int user_id; // user id
+    private int car_id;
+    private User user;
+    private Car car;
+    //public String daysdiff;
 
     public int getBooking_id() {
         return booking_id;
@@ -120,8 +120,7 @@ public class Booking {
 
     public Booking() {
     }
-
-    /**
+/**
     public void getDifferenceDays(String pickup_date, String return_date) {
          try {
             //Dates to compare
@@ -147,6 +146,6 @@ public class Booking {
         catch (Exception exception) {
             Log.e("DIDN'T WORK", "exception " + exception);
         }
-    } */
+    }*/
 
 }

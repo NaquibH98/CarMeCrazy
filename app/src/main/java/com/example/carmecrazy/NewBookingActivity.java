@@ -45,6 +45,7 @@ public class NewBookingActivity extends AppCompatActivity {
     private BookingService bookingService;
     private Car car;
     private CarService carService;
+    private String daysdiff;
 
     /**
      * Date picker fragment class
@@ -119,6 +120,7 @@ public class NewBookingActivity extends AppCompatActivity {
             return insets;
         });
 
+
         // retrieve car details based on selected id
 
         // get car id sent by CarListActivity, -1 if not found
@@ -154,8 +156,8 @@ public class NewBookingActivity extends AppCompatActivity {
                     TextView tvName = findViewById(R.id.tvName);
                     TextView tvPrice = findViewById(R.id.tvPrice);
                     TextView tvPlateNo = findViewById(R.id.tvPlateNo);
-                    //TextView tvState = findViewById(R.id.tvState);
-                    //TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
+                    TextView tvState = findViewById(R.id.tvState);
+                    TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
                     tvPickupDate = findViewById(R.id.tvPickupDate);
                     tvReturnDate = findViewById(R.id.tvReturnDate);
 
@@ -164,8 +166,8 @@ public class NewBookingActivity extends AppCompatActivity {
                     tvName.setText(car.getCar_Name());
                     tvPrice.setText(car.getCar_Price());
                     tvPlateNo.setText(car.getCar_PlateNo());
-                    //tvState.setText(booking.getState());
-                    //tvTotal_Price.setText(Double.toString(booking.getTotal_price()));
+                    tvState.setText("Rejected");
+                    tvTotal_Price.setText("0.00");
 
                     // set default pickup date value to current date
                     pickup_date = new Date();
@@ -231,17 +233,47 @@ public class NewBookingActivity extends AppCompatActivity {
         // get values in form
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
-
-        int carId = car.getCarID();
-        int userId = user.getId();
-        String state =  booking.getState();
-        double total_price = booking.getTotal_price();
-
         // convert createdAt date to format in DB
         // reference: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        String pDate = booking.getPickup_date();
-        String rDate = booking.getReturn_date();
+
+        int carId = car.getCarID();
+        int userId = user.getId();
+        String state = "Rejected";
+        double total_price = 0.0;
+        double carPrice = 0.0;
+
+        String pDate = sdf.format(pickup_date);
+        String rDate = sdf.format(return_date);
+
+        long differenceInMillis = return_date.getTime() - pickup_date.getTime();
+        long differenceInDays = differenceInMillis / (24 * 60 * 60 * 1000);
+
+        switch (car.getCar_Name()) {
+
+    case "Supra":
+        carPrice = 2500;
+        break;
+    case "Corolla":
+        carPrice = 500;
+        break;
+    case "Vios":
+        carPrice = 1000;
+        break;
+    case "Hilux":
+        carPrice = 1500;
+        break;
+    case "Altis":
+        carPrice = 10000;
+        break;
+
+    default:
+        carPrice = 0.0; // Default price if car name doesn't match
+        break;
+}
+
+
+        total_price = carPrice * differenceInDays;
 
         // send request to add new booking to the REST API
         BookingService bookingService = ApiUtils.getBookingService();
@@ -287,5 +319,33 @@ public class NewBookingActivity extends AppCompatActivity {
 
             }
         });
+/**
+            public void getDifferenceDays(String pDate, String rDate) {
+         try {
+            //Dates to compare
+            String CurrentDate =  pDate;
+            String FinalDate =  rDate;
+            Date date1;
+            Date date2;
+            SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+
+            //Setting dates
+            date1 = dates.parse(CurrentDate);
+            date2 = dates.parse(FinalDate);
+
+            //Comparing dates
+            long difference = Math.abs(date1.getTime() - date2.getTime());
+            long differenceDates = difference / (24 * 60 * 60 * 1000);
+
+            //Convert long to String
+            daysdiff = Long.toString(differenceDates);
+
+            Log.e("HERE","HERE: " + daysdiff);
+        }
+        catch (Exception exception) {
+            Log.e("DIDN'T WORK", "exception " + exception);
+        }
+    }*/
+
     }
 }

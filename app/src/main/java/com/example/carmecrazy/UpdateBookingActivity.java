@@ -146,7 +146,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
                     Booking updatedBooking = response.body();
 
                     // display message
-                    displayUpdateSuccess(updatedBooking.getBooking_id() + " updated successfully.");
+                    displayUpdateSuccess(updatedBooking.getCar().getCar_Name() + " updated successfully.");
 
                 }
                 else if (response.code() == 401) {
@@ -183,7 +183,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
 
                         // end this activity and forward user to BookingListActivity
-                        Intent intent = new Intent(getApplicationContext(), BookingListActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), BookingListAdminActivity.class);
                         startActivity(intent);
                         finish();
 

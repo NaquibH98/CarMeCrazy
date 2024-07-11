@@ -28,7 +28,7 @@ public interface BookingService {
     @POST("BOOKING")
     Call<Booking> addBooking(@Header ("api-key") String apiKey,  @Field("pickup_date") String pickup_date,
                              @Field("return_date") String return_date, @Field("state") String state,
-                             @Field("total_price") double total_price, @Field("car_id") int car_id, @Field("user_id") int user_id);
+                             @Field("total_price") double total_price, @Field("user_id") int user_id, @Field("car_id") int car_id);
 
     @DELETE("BOOKING/{booking_id}")
     Call<DeleteResponse> deleteBooking(@Header ("api-key") String apiKey, @Path("booking_id") int booking_id);
