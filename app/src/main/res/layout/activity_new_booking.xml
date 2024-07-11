@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="50dp"
+    android:useDefaultMargins="true"
     android:alignmentMode="alignBounds"
-    android:columnCount="2"
+    android:id="@+id/main"
     android:columnOrderPreserved="false"
-    android:useDefaultMargins="true">
+    android:columnCount="2"
+    android:layout_marginTop="40dp"
+    >
 
     <TextView
-        android:id="@+id/tvBookingDetails"
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
-        android:text="Booking Details"
-        android:textStyle="bold"
+        android:text="Add New Booking"
         android:textSize="32dip" />
+
+    <TextView
+        android:layout_columnSpan="2"
+        android:layout_gravity="center"
+        android:text="Enter booking information"
+        android:textSize="16dip" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -31,14 +37,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Pickup Date:" />
+                android:text="Pickup date:"/>
 
             <TextView
                 android:id="@+id/tvPickup_Date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="pickup_date" />
+                android:layout_weight="0.4"
+                android:text="pickup date"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Pick Date"
+                android:layout_weight="0.35"
+                android:onClick="showBorrowDatePickerDialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -50,20 +63,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Return Date:" />
+                android:text="Return date:"/>
 
             <TextView
                 android:id="@+id/tvReturn_Date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="return_date" />
+                android:layout_weight="0.4"
+                android:text="return date"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Pick Date"
+                android:layout_weight="0.35"
+                android:onClick="showReturnDatePickerDialog"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="0dp"
@@ -71,31 +91,41 @@
                 android:layout_weight="0.25"
                 android:text="State:" />
 
-            <TextView
-                android:id="@+id/tvState"
+            <EditText
+                android:id="@+id/txtState"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="state" />
+                android:layout_weight="0.75" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Total Price:" />
+                android:text="Total price:" />
 
-            <TextView
-                android:id="@+id/tvTotal_Price"
+            <EditText
+                android:id="@+id/txtTotal_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:text="total_price" />
+                android:layout_weight="0.75" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ADD BOOKING"
+                android:onClick="addNewBooking" />
+
         </LinearLayout>
 
     </LinearLayout>

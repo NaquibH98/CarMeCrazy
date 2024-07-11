@@ -40,7 +40,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
 
         // get booking id sent by BookingListActivity, -1 if not found
         Intent intent = getIntent();
-        int BookingID = intent.getIntExtra("BookingID", -1);
+        int bookingId = intent.getIntExtra("booking_id", -1);
 
         // get user info from SharedPreferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
@@ -51,7 +51,7 @@ public class BookingDetailsActivity extends AppCompatActivity {
         bookingService = ApiUtils.getBookingService();
 
         // execute the API query. send the token and booking id
-        bookingService.getBooking(token, BookingID).enqueue(new Callback<Booking>() {
+        bookingService.getBooking(token, bookingId).enqueue(new Callback<Booking>() {
 
             @Override
             public void onResponse(Call<Booking> call, Response<Booking> response) {
@@ -65,19 +65,17 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     Booking booking = response.body();
 
                     // get references to the view elements
-                    TextView tvBookingID = findViewById(R.id.tvBookingID);
                     TextView tvPickup_Date = findViewById(R.id.tvPickup_Date);
                     TextView tvReturn_Date = findViewById(R.id.tvReturn_Date);
                     TextView tvState = findViewById(R.id.tvState);
                     TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
 
                     // set values
-                    tvBookingID.setText(booking.getBooking_id());
                     tvPickup_Date.setText(booking.getPickup_date());
                     tvReturn_Date.setText(booking.getReturn_date());
                     tvState.setText(booking.getState());
-                    String totalprice = Double.toString(booking.getTotal_price());
-                    tvTotal_Price.setText(totalprice);
+                    String total_price = Double.toString(booking.getTotal_price());
+                    tvTotal_Price.setText(total_price);
                 }
                 else if (response.code() == 401) {
                     // unauthorized error. invalid token, ask user to relogin

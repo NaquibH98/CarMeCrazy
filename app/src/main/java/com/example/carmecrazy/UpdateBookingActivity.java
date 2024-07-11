@@ -46,7 +46,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
         // retrieve booking id from intent
         // get booking id sent by BookingListActivity, -1 if not found
         Intent intent = getIntent();
-        int BookingID = intent.getIntExtra("BookingID", -1);
+        int BookingID = intent.getIntExtra("booking_id", -1);
 
         // get references to the form fields in layout
         txtState = findViewById(R.id.txtState);

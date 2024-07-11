@@ -43,13 +43,16 @@
             android:name=".BookingDetailsActivity"
             android:exported="false"/>
         <activity
+            android:name=".NewBookingActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpdateBookingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".CustomerActivity"
             android:exported="true"/>
         <activity
-            android:name=".CustomerActivity"
+            android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>

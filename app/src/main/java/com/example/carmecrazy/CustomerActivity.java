@@ -72,6 +72,12 @@ public class CustomerActivity extends AppCompatActivity {
 
     } */
 
+    public void newBookClicked(View view) {
+        // forward user to NewBookingActivity
+        Intent intent = new Intent(getApplicationContext(), NewBookingActivity.class);
+        startActivity(intent);
+    }
+
     public void carListClicked(View view) {
         // forward user to CustomerCarListActivity
         Intent intent = new Intent(getApplicationContext(), CustomerCarListActivity.class);

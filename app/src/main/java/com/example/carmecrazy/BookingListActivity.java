@@ -193,7 +193,7 @@ public class BookingListActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.cust_car_context_menu, menu);
+        inflater.inflate(R.menu.booking_context_menu, menu);
     }
 
     @Override
@@ -218,7 +218,7 @@ public class BookingListActivity extends AppCompatActivity {
         Log.d("MyApp:", "viewing details: " + selectedBooking.toString());
         // forward user to BookingDetailsActivity, passing the selected booking id
         Intent intent = new Intent(getApplicationContext(), BookingDetailsActivity.class);
-        intent.putExtra("BookingID", selectedBooking.getBooking_id());
+        intent.putExtra("booking_id", selectedBooking.getBooking_id());
         startActivity(intent);
     }
 

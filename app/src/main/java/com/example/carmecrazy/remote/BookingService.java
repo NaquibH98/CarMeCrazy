@@ -19,22 +19,22 @@ public interface BookingService {
     @GET("BOOKING")
     Call<List<Booking>> getAllBooking(@Header("api-key") String api_key);
 
-    @GET("BOOKING/{BookingID}")
+    @GET("BOOKING/{booking_id}")
     Call<Booking> getBooking(@Header("api-key") String api_key, @Path("booking_id") int booking_id);
 
     @FormUrlEncoded
     @POST("BOOKING")
-    Call<Booking> addBooking(@Header ("api-key") String apiKey, @Field("pickup_date") String Pickup_Date,
-                         @Field("return_date") String Return_Date, @Field("state") String State,
-                         @Field("price") double price, @Field("car_id") int car_id, @Field("user_id") int user_id);
+    Call<Booking> addBooking(@Header ("api-key") String apiKey, @Field("pickup_date") String pickup_date,
+                         @Field("return_date") String return_date, @Field("state") String state,
+                         @Field("total_price") double total_price, @Field("car_id") int car_id, @Field("user_id") int user_id);
 
-    @DELETE("BOOKING/{BookingID}")
+    @DELETE("BOOKING/{booking_id}")
     Call<DeleteResponse> deleteBooking(@Header ("api-key") String apiKey, @Path("booking_id") int booking_id);
 
     @FormUrlEncoded
-    @POST("BOOKING/{BookingID}")
+    @POST("BOOKING/{booking_id}")
     Call<Booking> updateBooking(@Header ("api-key") String apiKey, @Path("booking_id") int booking_id,
-                                @Field("pickup_date") String Pickup_Date, @Field("return_date") String Return_Date,
+                                @Field("pickup_date") String pickup_date, @Field("return_date") String return_date,
                                 @Field("state") String state,
-                                @Field("price") double price, @Field("car_id") int car_id, @Field("user_id") int user_id);
+                                @Field("total_price") double total_price, @Field("car_id") int car_id, @Field("user_id") int user_id);
 }
