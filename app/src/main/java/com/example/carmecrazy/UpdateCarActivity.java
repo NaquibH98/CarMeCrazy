@@ -1,15 +1,10 @@
 package com.example.carmecrazy;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,19 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.carmecrazy.model.Car;
 import com.example.carmecrazy.model.User;
 import com.example.carmecrazy.remote.ApiUtils;
 import com.example.carmecrazy.remote.CarService;
 import com.example.carmecrazy.sharedpref.SharedPrefManager;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,7 +78,7 @@ public class UpdateCarActivity extends AppCompatActivity {
                     txtBrand.setText(car.getCar_Brand());
                     txtName.setText(car.getCar_Name());
                     txtPrice.setText(car.getCar_Price());
-                    txtPlateNo.setText(car.getCar_Car_PlateNo());
+                    txtPlateNo.setText(car.getCar_PlateNo());
 
                 }
                 else if (response.code() == 401) {
@@ -155,7 +143,7 @@ public class UpdateCarActivity extends AppCompatActivity {
         // send request to update the car record to the REST API
         CarService carService = ApiUtils.getCarService();
         Call<Car> call = carService.updateCar(user.getToken(), car.getCarID(), car.getCar_Brand(),
-                car.getCar_Name(), car.getCar_Price(), car.getCar_Car_PlateNo());
+                car.getCar_Name(), car.getCar_Price(), car.getCar_PlateNo());
 
         // execute
         call.enqueue(new Callback<Car>() {

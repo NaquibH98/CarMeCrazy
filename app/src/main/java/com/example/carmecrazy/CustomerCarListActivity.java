@@ -159,7 +159,20 @@ public class CustomerCarListActivity extends AppCompatActivity {
             doViewDetails(selectedCar);
         }
 
+        else if (item.getItemId() == R.id.menu_booking) {
+            // user clicked booking contextual menu
+            doBooking(selectedCar);
+        }
+
         return super.onContextItemSelected(item);
+    }
+
+    private void doBooking(Car selectedCar) {
+        Log.d("MyApp:", "booking car: " + selectedCar.toString());
+        // forward user to NewBookingActivity, passing the selected car id
+        Intent intent = new Intent(getApplicationContext(), NewBookingActivity.class);
+        intent.putExtra("CarID", selectedCar.getCarID());
+        startActivity(intent);
     }
 
     private void doViewDetails(Car selectedCar) {

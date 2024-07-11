@@ -41,11 +41,10 @@ public class NewBookingActivity extends AppCompatActivity {
     private static Date pickup_date;
     private static TextView tvReturnDate;
     private static Date return_date;
-    private EditText txtState;
-    private EditText txtTotal_price;
     private BookingService bookingService;
     private Booking booking;
     private Car car;
+    private CarService carService;
 
     /**
      * Date picker fragment class
@@ -124,7 +123,7 @@ public class NewBookingActivity extends AppCompatActivity {
 
         // get booking id sent by BookingListActivity, -1 if not found
         Intent intent = getIntent();
-        int bookingId = intent.getIntExtra("booking_id", -1);
+        int carId = intent.getIntExtra("CarID", -1);
 
         // get user info from SharedPreferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
@@ -134,31 +133,41 @@ public class NewBookingActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         // get booking service instance
-        bookingService = ApiUtils.getBookingService();
+        carService = ApiUtils.getCarService();
 
         // execute the API query. send the token and book id
-        bookingService.getBooking(token, bookingId).enqueue(new Callback<Booking>() {
+        carService.getCar(token, carId).enqueue(new Callback<Car>() {
 
             @Override
-            public void onResponse(Call<Booking> call, Response<Booking> response) {
+            public void onResponse(Call<Car> call, Response<Car> response) {
                 // for debug purpose
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 if (response.code() == 200) {
                     // server return success
 
-                    // get booking object from response
-                    booking = response.body();
+                    // get car object from response
+                    car = response.body();
 
                     // get references to the view elements
-                    tvPickupDate = findViewById(R.id.tvPickup_Date);
-                    tvReturnDate = findViewById(R.id.tvReturn_Date);
-                    TextView tvState = findViewById(R.id.tvState);
-                    TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
+                    TextView tvBrand = findViewById(R.id.tvBrand);
+                    TextView tvName = findViewById(R.id.tvName);
+                    TextView tvPrice = findViewById(R.id.tvPrice);
+                    TextView tvIPlateNo = findViewById(R.id.tvPlateNo);
+                    tvPickupDate = findViewById(R.id.tvPickupDate);
+                    tvReturnDate = findViewById(R.id.tvReturnDate);
 
                     // set values
-                    tvState.setText(booking.getState());
-                    tvTotal_Price.setText(String.valueOf(booking.getTotal_price()));
+                    tvBrand.setText(car.getCar_Brand());
+                    tvName.setText(car.getCar_Name());
+                    tvPrice.setText(car.getCar_Price());
+                    tvIPlateNo.setText(car.getCar_PlateNo());
+                    // set default pickup date value to current date
+                    pickup_date = new Date();
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(pickup_date);
+                    c.add(Calendar.DATE, 2);  // number of days to add
+                    return_date = c.getTime();  // dt is now the new date
 
                     // display in the label beside the button with specific date format
                     tvPickupDate.setText( sdf.format(pickup_date) );
@@ -178,7 +187,7 @@ public class NewBookingActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Booking> call, Throwable t) {
+            public void onFailure(Call<Car> call, Throwable t) {
                 Toast.makeText(null, "Error connecting", Toast.LENGTH_LONG).show();
             }
         });
@@ -213,15 +222,13 @@ public class NewBookingActivity extends AppCompatActivity {
      * Called when Add Booking button is clicked
      * @param v
      */
-    public void addNewBooking(View v) {
+    public void addBooking(View v) {
         // get values in form
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
 
-        int car_id = booking.getCar_id();
-        int user_id = booking.getUser_id();
-        String state = txtState.getText().toString();
-        double total_price = Double.parseDouble(txtTotal_price.getText().toString());
+        int carId = car.getCarID();
+        int userId = user.getId();
 
         // convert createdAt date to format in DB
         // reference: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
@@ -231,7 +238,7 @@ public class NewBookingActivity extends AppCompatActivity {
 
         // send request to add new booking to the REST API
         BookingService bookingService = ApiUtils.getBookingService();
-        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate, state, total_price, car_id, user_id);
+        Call<Booking> call = bookingService.addBooking(user.getToken(), pDate, rDate, carId, userId);
 
         // execute
         call.enqueue(new Callback<Booking>() {
@@ -246,7 +253,7 @@ public class NewBookingActivity extends AppCompatActivity {
                     Booking addedBooking = response.body();
                     // display message
                     Toast.makeText(getApplicationContext(),
-                            "Booking_id " + addedBooking.getBooking_id() + " added successfully.",
+                            addedBooking.getCar().getCar_Name() + " added successfully.",
                             Toast.LENGTH_LONG).show();
 
                     // end this activity and forward user to BookingListActivity

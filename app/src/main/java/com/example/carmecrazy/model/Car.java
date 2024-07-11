@@ -42,7 +42,7 @@ public class Car {
 		Car_Price = car_Price;
 	}
 
-	public String getCar_Car_PlateNo() {
+	public String getCar_PlateNo() {
 		return Car_PlateNo;
 	}
 

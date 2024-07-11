@@ -1,32 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:useDefaultMargins="true"
+    android:layout_marginTop="50dp"
     android:alignmentMode="alignBounds"
-    android:id="@+id/main"
-    android:columnOrderPreserved="false"
     android:columnCount="2"
-    android:layout_marginTop="40dp"
-    >
+    android:columnOrderPreserved="false"
+    android:useDefaultMargins="true">
 
     <TextView
+        android:id="@+id/tvName"
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
-        android:text="Add New Booking"
+        android:text="Name"
         android:textSize="32dip" />
-
-    <TextView
-        android:layout_columnSpan="2"
-        android:layout_gravity="center"
-        android:text="Enter booking information"
-        android:textSize="16dip" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Brand:" />
+
+            <TextView
+                android:id="@+id/tvBrand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="brand" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="Price/day (RM):" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="price" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="PlateNo:" />
+
+            <TextView
+                android:id="@+id/tvPlateNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="plateNo" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -44,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="pickup_date"/>
+                android:text="pickup date"/>
 
             <Button
                 android:layout_width="0dp"
@@ -70,7 +120,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="return_date"/>
+                android:text="return date"/>
 
             <Button
                 android:layout_width="0dp"
@@ -81,50 +131,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="State:" />
-
-            <EditText
-                android:id="@+id/txtState"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:text="Total price:" />
-
-            <EditText
-                android:id="@+id/txtTotal_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ADD BOOKING"
-                android:onClick="addNewBooking" />
+                android:text="Book Car"
+                android:onClick="addBooking" />
 
         </LinearLayout>
 
