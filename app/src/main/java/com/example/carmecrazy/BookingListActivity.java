@@ -126,7 +126,7 @@ public class BookingListActivity extends AppCompatActivity {
 
         // prepare REST API call
         BookingService bookingService = ApiUtils.getBookingService();
-        Call<DeleteResponse> call = bookingService.deleteBooking(user.getToken(), selectedBooking.getBookingID());
+        Call<DeleteResponse> call = bookingService.deleteBooking(user.getToken(), selectedBooking.getBooking_id());
 
         // execute the call
         call.enqueue(new Callback<DeleteResponse>() {
@@ -218,7 +218,7 @@ public class BookingListActivity extends AppCompatActivity {
         Log.d("MyApp:", "viewing details: " + selectedBooking.toString());
         // forward user to BookingDetailsActivity, passing the selected booking id
         Intent intent = new Intent(getApplicationContext(), BookingDetailsActivity.class);
-        intent.putExtra("BookingID", selectedBooking.getBookingID());
+        intent.putExtra("BookingID", selectedBooking.getBooking_id());
         startActivity(intent);
     }
 

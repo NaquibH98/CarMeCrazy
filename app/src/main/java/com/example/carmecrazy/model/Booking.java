@@ -1,80 +1,115 @@
 package com.example.carmecrazy.model;
 
 public class Booking {
-    int BookingID;
-    String Pickup_Date;
-    String Return_Date;
-    String State;
-    Double Total_Price;
-    int id; // user id
-    int CarID;
+    int booking_id;
+    String pickup_date;
+    String return_date;
+    String state;
+    double total_price;
+    int user_id; // user id
+    int car_id;
+    User user;
+    Car car;
 
-    public int getBookingID() {
-        return BookingID;
+    public int getBooking_id() {
+        return booking_id;
     }
 
-    public void setBookingID(int bookingID) {
-        BookingID = bookingID;
+    public void setBooking_id(int booking_id) {
+        this.booking_id = booking_id;
     }
 
-    public String getPickup_Date() {
-        return Pickup_Date;
+    public String getPickup_date() {
+        return pickup_date;
     }
 
-    public void setPickup_Date(String pickup_Date) {
-        Pickup_Date = pickup_Date;
+    public void setPickup_date(String pickup_date) {
+        this.pickup_date = pickup_date;
     }
 
-    public String getReturn_Date() {
-        return Return_Date;
+    public String getReturn_date() {
+        return return_date;
     }
 
-    public void setReturn_Date(String return_Date) {
-        Return_Date = return_Date;
+    public void setReturn_date(String return_date) {
+        this.return_date = return_date;
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
     public void setState(String state) {
-        State = state;
+        this.state = state;
     }
 
-    public Double getTotal_Price() {
-        return Total_Price;
+    public double getTotal_price() {
+        return total_price;
     }
 
-    public void setTotal_Price(Double total_Price) {
-        Total_Price = total_Price;
+    public void setTotal_price(double total_price) {
+        this.total_price = total_price;
     }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getCarID() {
-        return CarID;
+    public int getCar_id() {
+        return car_id;
     }
 
-    public void setCarID(int carID) {
-        CarID = carID;
+    public void setCar_id(int car_id) {
+        this.car_id = car_id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     @Override
     public String toString() {
         return "Booking{" +
-                "BookingID=" + BookingID +
-                ", Pickup_Date='" + Pickup_Date + '\'' +
-                ", Return_Date='" + Return_Date + '\'' +
-                ", State='" + State + '\'' +
-                ", TotalPrice=" + Total_Price +
-                ", id=" + id +
-                ", CarID=" + CarID +
+                "booking_id=" + booking_id +
+                ", pickup_date='" + pickup_date + '\'' +
+                ", return_date='" + return_date + '\'' +
+                ", state='" + state + '\'' +
+                ", total_price=" + total_price +
+                ", user_id=" + user_id +
+                ", car_id=" + car_id +
+                ", user=" + user +
+                ", car=" + car +
                 '}';
+    }
+
+    public Booking(int booking_id, String pickup_date, String return_date, String state, double total_price, int user_id, int car_id, User user, Car car) {
+        this.booking_id = booking_id;
+        this.pickup_date = pickup_date;
+        this.return_date = return_date;
+        this.state = state;
+        this.total_price = total_price;
+        this.user_id = user_id;
+        this.car_id = car_id;
+        this.user = user;
+        this.car = car;
+    }
+
+    public Booking() {
     }
 }

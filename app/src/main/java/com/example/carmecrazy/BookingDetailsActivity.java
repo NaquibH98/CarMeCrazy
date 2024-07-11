@@ -72,11 +72,11 @@ public class BookingDetailsActivity extends AppCompatActivity {
                     TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
 
                     // set values
-                    tvBookingID.setText(booking.getBookingID());
-                    tvPickup_Date.setText(booking.getPickup_Date());
-                    tvReturn_Date.setText(booking.getReturn_Date());
+                    tvBookingID.setText(booking.getBooking_id());
+                    tvPickup_Date.setText(booking.getPickup_date());
+                    tvReturn_Date.setText(booking.getReturn_date());
                     tvState.setText(booking.getState());
-                    String totalprice = Double.toString(booking.getTotal_Price());
+                    String totalprice = Double.toString(booking.getTotal_price());
                     tvTotal_Price.setText(totalprice);
                 }
                 else if (response.code() == 401) {

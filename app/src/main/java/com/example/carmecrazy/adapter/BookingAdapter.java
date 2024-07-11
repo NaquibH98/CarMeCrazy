@@ -59,7 +59,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         // Inflate layout using the single item layout
-        View view = inflater.inflate(R.layout.car_list_item, parent, false);
+        View view = inflater.inflate(R.layout.booking_list_item, parent, false);
         // Return a new holder instance
         BookingAdapter.ViewHolder viewHolder = new BookingAdapter.ViewHolder(view);
         return viewHolder;
@@ -69,9 +69,9 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.ViewHold
     public void onBindViewHolder(BookingAdapter.ViewHolder holder, int position) {
         // bind data to the view holder instance
         Booking m = bookingListData.get(position);
-        holder.tvBookingID.setText(m.getBookingID());
+        holder.tvBookingID.setText(String.valueOf(m.getBooking_id()));
         holder.tvState.setText(m.getState());
-        holder.tvTotalPrice.setText("Price: RM" + m.getTotal_Price());
+        holder.tvTotalPrice.setText("Price: RM" + m.getTotal_price());
     }
 
     @Override

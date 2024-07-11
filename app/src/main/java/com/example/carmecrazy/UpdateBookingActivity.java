@@ -129,8 +129,8 @@ public class UpdateBookingActivity extends AppCompatActivity {
 
         // send request to update the booking record to the REST API
         BookingService bookingService = ApiUtils.getBookingService();
-        Call<Booking> call = bookingService.updateBooking(user.getToken(), booking.getBookingID(), booking.getState(),
-                booking.getPickup_Date(), booking.getReturn_Date(), booking.getTotal_Price());
+        Call<Booking> call = bookingService.updateBooking(user.getToken(), booking.getBooking_id(), booking.getState(),
+                booking.getPickup_date(), booking.getReturn_date(), booking.getTotal_price(), booking.getCar_id(), booking.getUser_id());
 
         // execute
         call.enqueue(new Callback<Booking>() {
@@ -146,7 +146,7 @@ public class UpdateBookingActivity extends AppCompatActivity {
                     Booking updatedBooking = response.body();
 
                     // display message
-                    displayUpdateSuccess(updatedBooking.getBookingID() + " updated successfully.");
+                    displayUpdateSuccess(updatedBooking.getBooking_id() + " updated successfully.");
 
                 }
                 else if (response.code() == 401) {

@@ -20,21 +20,21 @@ public interface BookingService {
     Call<List<Booking>> getAllBooking(@Header("api-key") String api_key);
 
     @GET("BOOKING/{BookingID}")
-    Call<Booking> getBooking(@Header("api-key") String api_key, @Path("BookingID") int BookingID);
+    Call<Booking> getBooking(@Header("api-key") String api_key, @Path("booking_id") int booking_id);
 
     @FormUrlEncoded
     @POST("BOOKING")
-    Call<Booking> addBooking(@Header ("api-key") String apiKey, @Field("Pickup_Date") String Pickup_Date,
-                         @Field("Return_Date") String Return_Date, @Field("State") String State,
-                         @Field("Price") Double Price);
+    Call<Booking> addBooking(@Header ("api-key") String apiKey, @Field("pickup_date") String Pickup_Date,
+                         @Field("return_date") String Return_Date, @Field("state") String State,
+                         @Field("price") double price, @Field("car_id") int car_id, @Field("user_id") int user_id);
 
     @DELETE("BOOKING/{BookingID}")
-    Call<DeleteResponse> deleteBooking(@Header ("api-key") String apiKey, @Path("BookingID") int BookingID);
+    Call<DeleteResponse> deleteBooking(@Header ("api-key") String apiKey, @Path("booking_id") int booking_id);
 
     @FormUrlEncoded
     @POST("BOOKING/{BookingID}")
-    Call<Booking> updateBooking(@Header ("api-key") String apiKey, @Path("BookingID") int BookingID,
-                                @Field("Pickup_Date") String Pickup_Date, @Field("Return_Date") String Return_Date,
-                                @Field("State") String State,
-                                @Field("Price") Double Price);
+    Call<Booking> updateBooking(@Header ("api-key") String apiKey, @Path("booking_id") int booking_id,
+                                @Field("pickup_date") String Pickup_Date, @Field("return_date") String Return_Date,
+                                @Field("state") String state,
+                                @Field("price") double price, @Field("car_id") int car_id, @Field("user_id") int user_id);
 }
