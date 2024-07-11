@@ -37,12 +37,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewBookingActivity extends AppCompatActivity {
-    private static TextView tvPickup_Date;
+    private static TextView tvPickupDate;
     private static Date pickup_date;
-    private static TextView tvReturn_Date;
+    private static TextView tvReturnDate;
     private static Date return_date;
     private EditText txtState;
     private EditText txtTotal_price;
+    private BookingService bookingService;
     private Booking booking;
     private Car car;
 
@@ -50,7 +51,7 @@ public class NewBookingActivity extends AppCompatActivity {
      * Date picker fragment class
      * Reference: https://developer.android.com/guide/topics/ui/controls/pickers
      */
-    public static class BorrowDatePickerFragment extends DialogFragment
+    public static class PickupDatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override
@@ -73,7 +74,7 @@ public class NewBookingActivity extends AppCompatActivity {
 
             // display in the label beside the button with specific date format
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
-            tvPickup_Date.setText( sdf.format(pickup_date) );
+            tvPickupDate.setText( sdf.format(pickup_date) );
         }
     }
 
@@ -104,7 +105,7 @@ public class NewBookingActivity extends AppCompatActivity {
 
             // display in the label beside the button with specific date format
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
-            tvReturn_Date.setText( sdf.format(return_date) );
+            tvReturnDate.setText( sdf.format(return_date) );
         }
     }
 
@@ -119,11 +120,69 @@ public class NewBookingActivity extends AppCompatActivity {
             return insets;
         });
 
-        // get view objects references
-        tvPickup_Date = findViewById(R.id.tvPickup_Date);
-        tvReturn_Date = findViewById(R.id.tvReturn_Date);
-        txtState = findViewById(R.id.txtState);
-        txtTotal_price = findViewById(R.id.txtTotal_price);
+        // retrieve booking details based on selected id
+
+        // get booking id sent by BookingListActivity, -1 if not found
+        Intent intent = getIntent();
+        int bookingId = intent.getIntExtra("booking_id", -1);
+
+        // get user info from SharedPreferences
+        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
+        User user = spm.getUser();
+        String token = user.getToken();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        // get booking service instance
+        bookingService = ApiUtils.getBookingService();
+
+        // execute the API query. send the token and book id
+        bookingService.getBooking(token, bookingId).enqueue(new Callback<Booking>() {
+
+            @Override
+            public void onResponse(Call<Booking> call, Response<Booking> response) {
+                // for debug purpose
+                Log.d("MyApp:", "Response: " + response.raw().toString());
+
+                if (response.code() == 200) {
+                    // server return success
+
+                    // get booking object from response
+                    booking = response.body();
+
+                    // get references to the view elements
+                    tvPickupDate = findViewById(R.id.tvPickup_Date);
+                    tvReturnDate = findViewById(R.id.tvReturn_Date);
+                    TextView tvState = findViewById(R.id.tvState);
+                    TextView tvTotal_Price = findViewById(R.id.tvTotal_Price);
+
+                    // set values
+                    tvState.setText(booking.getState());
+                    tvTotal_Price.setText(String.valueOf(booking.getTotal_price()));
+
+                    // display in the label beside the button with specific date format
+                    tvPickupDate.setText( sdf.format(pickup_date) );
+                    tvReturnDate.setText( sdf.format(return_date) );
+
+                }
+                else if (response.code() == 401) {
+                    // unauthorized error. invalid token, ask user to relogin
+                    Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
+                    clearSessionAndRedirect();
+                }
+                else {
+                    // server return other error
+                    Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
+                    Log.e("MyApp: ", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Booking> call, Throwable t) {
+                Toast.makeText(null, "Error connecting", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     public void clearSessionAndRedirect() {
@@ -140,8 +199,8 @@ public class NewBookingActivity extends AppCompatActivity {
 
     }
 
-     public void showBorrowDatePickerDialog(View v) {
-        DialogFragment newFragment = new NewBookingActivity.BorrowDatePickerFragment();
+     public void showPickupDatePickerDialog(View v) {
+        DialogFragment newFragment = new NewBookingActivity.PickupDatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -156,17 +215,13 @@ public class NewBookingActivity extends AppCompatActivity {
      */
     public void addNewBooking(View v) {
         // get values in form
-        String pickup_date = tvPickup_Date.getText().toString();
-        String return_date = tvReturn_Date.getText().toString();
-        String state = txtState.getText().toString();
-        double total_price = Double.parseDouble(txtTotal_price.getText().toString());
-
-        // get user info from SharedPreferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
 
-        int car_id = car.getCarID();
-        int user_id = user.getId();
+        int car_id = booking.getCar_id();
+        int user_id = booking.getUser_id();
+        String state = txtState.getText().toString();
+        double total_price = Double.parseDouble(txtTotal_price.getText().toString());
 
         // convert createdAt date to format in DB
         // reference: https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html

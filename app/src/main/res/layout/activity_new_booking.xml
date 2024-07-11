@@ -40,18 +40,18 @@
                 android:text="Pickup date:"/>
 
             <TextView
-                android:id="@+id/tvPickup_Date"
+                android:id="@+id/tvPickupDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="pickup date"/>
+                android:text="pickup_date"/>
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Pick Date"
                 android:layout_weight="0.35"
-                android:onClick="showBorrowDatePickerDialog"/>
+                android:onClick="showPickupDatePickerDialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -66,11 +66,11 @@
                 android:text="Return date:"/>
 
             <TextView
-                android:id="@+id/tvReturn_Date"
+                android:id="@+id/tvReturnDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="return date"/>
+                android:text="return_date"/>
 
             <Button
                 android:layout_width="0dp"
